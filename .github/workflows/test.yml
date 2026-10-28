@@ -1,0 +1,32 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Репозиторийн кодыг татах
+        uses: actions/checkout@v6
+
+      - name: Java 17 орчин бэлдэх
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Орчны хувилбаруудыг харуулах
+        run: |
+          java -version
+          mvn -version
+
+      - name: Нэгжийн тестүүдийг ажиллуулах
+        run: mvn -B test
