@@ -1,4 +1,5 @@
 # Лаборатори №8 — Mockito mock объектууд
+[![tests](https://github.com/IrmuunSolo/lab8-SW-QA-test/actions/workflows/test.yml/badge.svg)](https://github.com/IrmuunSolo/lab8-SW-QA-test/actions/workflows/test.yml)
 
 - Хичээл: F.CSA313 — Программ хангамжийн чанарын баталгаа ба тест
 - Оюутан: Л. Ирмүүн
@@ -190,6 +191,20 @@ printf 'Maven exit code: %s\n' "$run_exit" | tee -a results/mvn-test.txt
 PIPESTATUS-ийг pipeline-ийн яг дараа авна. tee-ийн дараах дан $? нь Maven-ийн бус tee-ийн exit code болж болох тул ашиглаагүй. Мутацийн үед гаралтын нэрийг mvn-test-mutant-1.txt, mvn-test-mutant-2.txt, mvn-test-mutant-3.txt гэж тус тус өгсөн. Эцсийн зөв кодоор mutant файлуудыг дарж бичихгүй.
 
 JDK 21 дээр гарсан Byte Buddy dynamic agent болон class sharing warning-ууд бүтэн гаралтад хадгалагдсан. Тэдгээр нь энэ ажиллуулалтын Failures/Errors биш бөгөөд эцсийн build амжилттай болсон.
+
+## Нэмэлт даалгавар — GitHub Actions CI
+
+`.github/workflows/test.yml` workflow нь push болон
+pull request бүрд GitHub-ийн Ubuntu runner дээр ажиллана.
+Workflow репозиторийн кодыг татаж, Temurin Java 17 бэлтгээд
+`mvn -B test` командаар нэгжийн тестүүдийг ажиллуулдаг.
+
+GitHub Actions-ийн ажиллуулалтад 10 тест, 0 failure,
+0 error, 0 skipped болон BUILD SUCCESS гарсныг шалгасан.
+Тест унавал Maven-ийн 0-ээс өөр exit code-оор job
+амжилтгүй болно.
+
+[CI ажиллуулалтын хуудас](https://github.com/IrmuunSolo/lab8-SW-QA-test/actions/workflows/test.yml)
 
 ## Дүгнэлт
 
